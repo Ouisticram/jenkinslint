@@ -28,6 +28,9 @@ JENKINS_UNSAFE_SSL
 
 JENKINS_URL
    Full Jenkins URL for web-based validation
+   
+DEBUG
+   If set to true, display all logs (Even if lint is successful)
 
 Not all parameters need to be set. Example:
 
