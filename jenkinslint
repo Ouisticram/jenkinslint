@@ -13,7 +13,8 @@
 # For configuration, use the INIFILE
 INIFILE=.jenkinslintrc
 
-# Init ERROR variable
+# Init variables
+DEBUG=false
 ERROR=false
 
 # The following parameters are supported:
@@ -21,6 +22,7 @@ ERROR=false
 # JENKINS_SSH_PORT=8022 # When set, use SSH validation
 # JENKINS_UNSAFE_SSL=TRUE # Disable certificate validation
 # JENKINS_URL= # Full URL of Jenkins for web-based validation
+# DEBUG= # Display full logs
 
 # These are defaults and can easily be overwritten by using the INIFILE
 JENKINS_SERVER=jenkins.demo.local
@@ -62,6 +64,7 @@ show_settings(){
     echo "                JENKINS_SSH_PORT=${JENKINS_SSH_PORT}"
     echo "                JENKINS_URL=${JENKINS_URL}"
     echo "                JENKINS_UNSAFE_SSL=${JENKINS_UNSAFE_SSL}"
+    echo "                DEBUG=${DEBUG}"
     echo
     echo "Set these parameters in ${INIFILE}"
 }
@@ -89,7 +92,9 @@ validate(){
         echo "$result"
         ERROR=true
     else
-        echo "$result"
+        if [[ $DEBUG ]]; then
+            echo "$result"
+        fi
     fi
 }
 
@@ -108,7 +113,9 @@ if [[ "$JENKINS_SSH_PORT" ]]; then
         if [ ! -f "${JENKINS_FILE}" ]; then
             echo "Could not find file ${JENKINS_FILE}"
         else
-            echo "Validating ${JENKINS_FILE}"
+            if [[ $DEBUG ]]; then
+                echo "Validating ${JENKINS_FILE}"
+            fi
             ssh_validation
             validate
         fi
@@ -120,7 +127,9 @@ else
         if [ ! -f "${JENKINS_FILE}" ]; then
             echo "Could not find file ${JENKINS_FILE}"
         else
-            echo "Validating ${JENKINS_FILE}"
+            if [[ $DEBUG ]]; then
+                echo "Validating ${JENKINS_FILE}"
+            fi
             web_validation
             validate
         fi
