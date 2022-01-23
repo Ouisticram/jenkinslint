@@ -4,4 +4,4 @@
   description: Validates Jenkinsfiles using a Jenkins server
   entry: jenkinslint
   language: script
-  files: ^Jenkinsfile
+  files: ^.*Jenkinsfile$
