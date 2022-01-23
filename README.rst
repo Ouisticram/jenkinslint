@@ -54,10 +54,14 @@ Install the pre-commit framework, and add the following to the
 
 ::
 
-    - repo: https://github.com/PeterMosmans/jenkinslint
-      rev: master
+    - repo: https://github.com/Ouisticram/jenkinslint
+      rev: v1.1.0
       hooks:
        - id: jenkinslint
+         name: Lint Jenkinsfile
+         description: Validates Jenkinsfiles using a Jenkins server
+         files: .*Jenkinsfile
+         require_serial: true
 
 This will automatically validate files named ``Jenkinsfile`` during the pre
 commit phase.
