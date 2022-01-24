@@ -58,7 +58,7 @@ Install the pre-commit framework, and add the following to the
 ::
 
     - repo: https://github.com/Ouisticram/jenkinslint
-      rev: v1.1.2
+      rev: v1.1.3
       hooks:
        - id: jenkinslint
          name: Lint Jenkinsfile
