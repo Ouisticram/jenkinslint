@@ -89,6 +89,7 @@ web_validation(){
 
 validate(){
     if [[ $result =~ Errors ]]; then
+        echo "Error found on file ${JENKINS_FILE}"
         echo "$result"
         ERROR=true
     else
